@@ -13,3 +13,8 @@ Commands to Start
     USE python_ews_db
     select * from users
     exit
+
+4) User added:
+   Name: aa
+   Email: aa@test.com
+   password: test001
