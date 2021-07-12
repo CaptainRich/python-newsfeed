@@ -7,6 +7,8 @@ import sys
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 
+
+# This is the route for a new user to 'sign-up'
 @bp.route('/users', methods=['POST'])   #this route resolves to "/api/users"
 def signup():
   data = request.get_json()
@@ -48,3 +50,33 @@ def signup():
   session['loggedIn'] = True
 
   return jsonify(id = newUser.id)
+
+
+# This is the route for users to 'log-out'
+@bp.route('/users/logout', methods=['POST'])
+def logout():
+  # remove session variables
+  session.clear()
+  return '', 204       #204 indicates 'no content'
+
+
+# This is the route for existing users to "log-in"
+@bp.route('/users/login', methods=['POST'])
+def login():
+  data = request.get_json()
+  db = get_db()
+
+  try:
+    user = db.query(User).filter(User.email == data['email']).one()
+  except:
+    print(sys.exc_info()[0])
+
+  if user.verify_password(data['password']) == False:
+    return jsonify(message = 'Incorrect credentials'), 400
+
+  # If we get this far, assume all is ok and create the session
+  session.clear()                  #clear any previous session data first
+  session['user_id'] = user.id
+  session['loggedIn'] = True
+
+  return jsonify(id = user.id)
