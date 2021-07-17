@@ -15,6 +15,7 @@ Commands to Start
     exit
 
 4) User added:
-   Name: aa
-   Email: aa@test.com
-   password: test001
+   Name: aa               bb
+   Email: aa@test.com     bb@test.com
+   password: test001      test002
+
