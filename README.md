@@ -21,4 +21,7 @@ Commands to Start
 
 6) The 'Flask' web server is good locally only (i.e. one request at a time).  For
    production, use the 'Gunicorn' library for the web server.
+
+7) Heroku app is: https://just-tech-news-python-ay.herokuapp.com/
+
    
