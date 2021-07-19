@@ -4,6 +4,7 @@ from app.db import get_db
 
 bp = Blueprint('home', __name__, url_prefix='/')  #consolidate routes into a single "bp" object
 
+######################################################################################################################
 @bp.route('/')                                    #route decorator to turn "index function" into a route
 def index():
   # get all posts
@@ -15,6 +16,7 @@ def index():
                           loggedIn=session.get('loggedIn')
                         )
 
+######################################################################################################################
 @bp.route('/login')                               #route decorator to turn "login function" into a route
 def login():
   # IF not logged in yet
@@ -24,6 +26,7 @@ def login():
   # Otherwise, redirect to the dashboard
   return redirect( '/dashboard' )
 
+######################################################################################################################
 @bp.route('/post/<id>')                           #route decorator to turn "single function" into a route
 def single(id):
   # get single post by id
